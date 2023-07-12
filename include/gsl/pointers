@@ -87,7 +87,7 @@ public:
     static_assert(details::is_comparable_to_nullptr<T>::value, "T cannot be compared to nullptr.");
 
     template <typename U, typename = std::enable_if_t<std::is_convertible<U, T>::value>>
-    constexpr not_null(U&& u) : ptr_(std::forward<U>(u))
+    constexpr not_null(U&& u) noexcept : ptr_(std::forward<U>(u))
     {
         Expects(ptr_ != nullptr);
     }
